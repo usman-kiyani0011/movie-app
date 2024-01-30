@@ -1,8 +1,12 @@
 import React from 'react'
+import Header from "../Header/Header";
 
 const PageNotFound = () => {
   return (
-    <div>PageNotFound</div>
+    <div>
+      <Header />
+      <div>PageNotFound</div>
+    </div>
   )
 }
 

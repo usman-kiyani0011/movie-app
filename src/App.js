@@ -5,15 +5,21 @@ import Home from "./components/Home/Home";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Footer from "./components/Footer/Footer";
+import SignUp from "./components/SignUp/SignUp";
+import SignIn from "./components/SignIn/SignIn";
+import ReccomendedMovieListing from "./components/RecommendedMovies/RecommendedMovies";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-        <div className="container">
+        
+        <div className="">
           <Routes>
+            <Route exact path="/signup" element={<SignUp />} />
+            <Route exact path="/signin" element={<SignIn />} />
             <Route exact path="/" element={<Home />} />
+            <Route exact path="/recomended-movies" element={<ReccomendedMovieListing />} />
             <Route path="/movie/:movieID" element={<MovieDetails />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
