@@ -26,8 +26,7 @@ api.interceptors.response.use(
   },
   async function (error) {
     if (
-      error?.response?.status === 401 &&
-      error?.response?.data?.message === "Unauthorized"
+      error?.response?.data?.message === "Authorization Token Missing!"
     ) {
       localStorage.removeItem("_token");
       window.location.href = '/signin';

@@ -8,19 +8,20 @@ import Footer from "./components/Footer/Footer";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import ReccomendedMovieListing from "./components/RecommendedMovies/RecommendedMovies";
+import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        
+
         <div className="">
           <Routes>
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/signin" element={<SignIn />} />
             <Route exact path="/" element={<Home />} />
             <Route exact path="/recomended-movies" element={<ReccomendedMovieListing />} />
-            <Route path="/movie/:movieID" element={<MovieDetails />} />
+            <Route path="/profile" element={<UpdateProfile />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>

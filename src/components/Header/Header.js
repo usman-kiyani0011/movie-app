@@ -55,7 +55,14 @@ const Header = () => {
           >
             Change Password
           </button>
-          <img src={user} alt="user" className="user-image" />
+
+          <Link
+            to='/profile'
+            className=" text-white font-bold py-2 px-4 rounded"
+          >
+            Profile
+          </Link>
+          <img src={profile?.profileURL ? profile?.profileURL : user} alt="user" className="user-image rounded" />
 
         </div>
       </div>
