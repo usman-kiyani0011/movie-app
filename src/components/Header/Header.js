@@ -1,15 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import user from "../../images/user.png";
 import "./Header.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getProfile, setProfile } from "../../store/profile/profileSlice";
-import { getApi } from "../../api/api";
+import { getApi, putApi } from "../../api/api";
+import ChangePasswordModal from "../ChangePassword/ChangePassword";
+import { ShowToast } from "../ShowToast/ShowToast";
 
 const Header = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const profile = useSelector(getProfile);
   const dispatch = useDispatch();
+
+  const handleSubmit = async (values) => {
+    try {
+      delete values.confirmPassword
+      await putApi(`/user/change-password`, values);
+      ShowToast('Password successfully changed');
+      setIsModalVisible(false)
+    } catch (error) {
+      ShowToast(error?.response?.data?.message, "error");
+    }
+  };
+
   const fetchProfile = async () => {
     const response = await getApi('/user/profile');
     dispatch(setProfile(response?.data));
@@ -35,6 +50,7 @@ const Header = () => {
         </div>
         <div className=" flex">
           <button
+            onClick={() => setIsModalVisible(true)}
             className=" text-white font-bold py-2 px-4 rounded"
           >
             Change Password
@@ -43,6 +59,7 @@ const Header = () => {
 
         </div>
       </div>
+      {isModalVisible && <ChangePasswordModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} handleSubmit={handleSubmit} />}
     </div>
   );
 };
